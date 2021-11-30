@@ -6,7 +6,7 @@ namespace ITEA_Net
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+           
         }
     }
 }
