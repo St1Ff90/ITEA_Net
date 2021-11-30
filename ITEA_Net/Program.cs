@@ -7,43 +7,28 @@ namespace ITEA_Net
     {
         public static double Task1(double A, double B)
         {
-            double result = (5 * A + B * B) / (B - A);
-            return result;
+            return (5 * A + B * B) / (B - A);
         }
-        public static Stack<string> Task2(string _first, string _second)
+        public static (string A, string B) Task2(string _first, string _second)
         {
-            Stack<string> stack = new Stack<string>();
-            stack.Push(_first);
-            stack.Push(_second);
-            return stack;
+            (string, string) tuple = (_second, _first);
+            return tuple;
         }
 
         public static (int resultOfDividing, int chengeFromDividing) Task3(int A, int B)
         {
-            int _resultOfDividing = A / B;
-            int _chengeFromDividing = A % B;
-
-            (int, int) tuple = (_resultOfDividing, _chengeFromDividing);
+            (int, int) tuple = (A / B, A % B);
             return tuple;
         }
 
-        public static double Task4 (double A, double B, double C)
+        public static double Task4(double A, double B, double C)
         {
-            //A*X+B=C => X=(C-B)/A  - condition
-
-            double result = (C-B)/A;
-            return result;
+            return (C - B) / A;
         }
 
         public static (double A, double B) Task5(double X1, double Y1, double X2, double Y2)
         {
-            //(Y-Y1)/(Y2-Y1)=(X-X1)/(X2-X1) => Y=AX+B 
-            //A=(Y2-Y1)/(X2-X1)
-            //B=(X1*Y2-X2*Y1)/(X2-X1)
-            double A = (Y2 - Y1) / (X2 - X1);
-            double B = (X1 * Y2 - X2 * Y1) / (X2 - X1)*-1;
-            (double, double) tuple = (A, B);
-
+            (double, double) tuple = ((Y2 - Y1) / (X2 - X1), (X1 * Y2 - X2 * Y1) / (X2 - X1) * -1);
             return tuple;
         }
 
@@ -93,12 +78,10 @@ namespace ITEA_Net
                         string first = Console.ReadLine();
                         Console.Write("Please, enter second string ");
                         string second = Console.ReadLine();
-                        //recive a stack with the strings
-                        Stack<string> resultOfChenging = Task2(first, second);
-                        //reverse move (pop)
-                        first = resultOfChenging.Pop();
+                        (string A, string B) tuple = Task2(first, second);
+                        first = tuple.A;
                         Console.WriteLine("Result if the first string: " + first);
-                        second = resultOfChenging.Pop();
+                        second = tuple.B;
                         Console.WriteLine("Result if the second string: " + second);
                         break;
 
@@ -140,7 +123,7 @@ namespace ITEA_Net
                             Console.ReadLine();
                             return;
                         }
-                        
+
                         Console.Write("Please, enter B (\",\" is allowed)= ");
                         if (!double.TryParse(Console.ReadLine(), out B4))
                         {
@@ -192,8 +175,8 @@ namespace ITEA_Net
                             Console.ReadLine();
                             return;
                         }
-                        
-                        if(X1 == X2 && Y1 == Y2)
+
+                        if (X1 == X2 && Y1 == Y2)
                         {
                             Console.WriteLine("Two points have the same value!"); // Error messege
                             Console.ReadLine();
