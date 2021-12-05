@@ -193,7 +193,6 @@ namespace Lesson_2
 
                 default:
                     throw new Exception("Something went wrong!");
-
             }
         }
     }
