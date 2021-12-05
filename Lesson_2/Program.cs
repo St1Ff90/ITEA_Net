@@ -39,6 +39,7 @@ namespace Lesson_2
                     throw new Exception("Something went wrong!");
             }
         }
+         
 
         private static void SortThreeDigits(ref double first, ref double second, ref double third)
         {
