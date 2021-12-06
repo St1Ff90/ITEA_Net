@@ -30,8 +30,8 @@ namespace Lesson_2
             {
                 result = A - B;
             }
-            return result;
 
+            return result;
         }
 
         private static int PointCoordinates(double x, double y)
@@ -46,10 +46,8 @@ namespace Lesson_2
                     return 4;
                 case true when x > 0 && y > 0:
                     return 1;
-                case true when x == 0 || y == 0:
-                    return 0;
                 default:
-                    throw new Exception("Something went wrong!");
+                    return 0;
             }
         }
 
@@ -59,7 +57,6 @@ namespace Lesson_2
             a = b;
             b = temp;
         }
-
 
         private static void SortThreeDigits(ref double first, ref double second, ref double third)
         {
@@ -83,13 +80,15 @@ namespace Lesson_2
             double discriminant = b * b - 4 * a * c;
             if (discriminant < 0)
             {
-                x1 = x2 = 0;
+                x1 = 0;
+                x2 = 0;
             }
             else
             {
                 if (discriminant == 0)
                 {
-                    x1 = x2 = -b / (2 * a);
+                    x1 = -b / (2 * a);
+                    x2 = x1;
                 }
                 else
                 {
@@ -106,77 +105,66 @@ namespace Lesson_2
 
             if (num >= 20)
             {
-                if (num / 10 * 10 == 20)
+                switch (num / 10)
                 {
-                    result += "twenty ";
+                    case 2:
+                        result = "twenty ";
+                        break;
+                    case 3:
+                        result = "twenty ";
+                        break;
+                    case 4:
+                        result = "forty ";
+                        break;
+                    case 5:
+                        result = "fifty ";
+                        break;
+                    case 6:
+                        result = "sixty ";
+                        break;
+                    case 7:
+                        result = "seventy ";
+                        break;
+                    case 8:
+                        result = "eighty ";
+                        break;
+                    case 9:
+                        result = "ninety ";
+                        break;
                 }
-                if (num / 10 * 10 == 30)
+
+                switch (num % 10)
                 {
-                    result += "thirty ";
-                }
-                if (num / 10 * 10 == 40)
-                {
-                    result += "forty ";
-                }
-                if (num / 10 * 10 == 50)
-                {
-                    result += "fifty ";
-                }
-                if (num / 10 * 10 == 60)
-                {
-                    result += "sixty ";
-                }
-                if (num / 10 * 10 == 70)
-                {
-                    result += "seventy ";
-                }
-                if (num / 10 * 10 == 80)
-                {
-                    result += "eighty ";
-                }
-                if (num / 10 * 10 == 90)
-                {
-                    result += "ninety ";
-                }
-                if (num % 10 == 0)
-                {
-                    result += "";
-                }
-                if (num % 10 == 1)
-                {
-                    result += "one";
-                }
-                if (num % 10 == 2)
-                {
-                    result += "rwo";
-                }
-                if (num % 10 == 3)
-                {
-                    result += "three";
-                }
-                if (num % 10 == 4)
-                {
-                    result += "four";
-                }
-                if (num % 10 == 5)
-                {
-                    result += "five";
-                }
-                if (num % 10 == 6)
-                {
-                    result += "six";
-                }
-                if (num % 10 == 7)
-                {
-                    result += "seven";
-                }
-                if (num % 10 == 8)
-                {
-                    result += "eight";
-                }
-                if (num % 10 == 9)
-                {
-                    result += "nine";
+                    case 0:
+                        result += "";
+                        break;
+                    case 1:
+                        result += "one";
+                        break;
+                    case 2:
+                        result += "two";
+                        break;
+                    case 3:
+                        result += "three";
+                        break;
+                    case 4:
+                        result += "four";
+                        break;
+                    case 5:
+                        result += "five";
+                        break;
+                    case 6:
+                        result += "six";
+                        break;
+                    case 7:
+                        result += "seven";
+                        break;
+                    case 8:
+                        result += "eight";
+                        break;
+                    case 9:
+                        result += "nine";
+                        break;
                 }
             }
 
@@ -264,7 +252,7 @@ namespace Lesson_2
             {
                 case 0:
                     Console.WriteLine("Task #1. Please, input A then B");
-                    Console.WriteLine("Result = " + Summ(double.Parse(Console.ReadLine()), double.Parse(Console.ReadLine())));
+                    Console.WriteLine("Result = " + Sum(double.Parse(Console.ReadLine()), double.Parse(Console.ReadLine())));
                     Console.WriteLine("Enter to exit");
                     Console.ReadLine();
                     break;
