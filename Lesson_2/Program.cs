@@ -15,21 +15,22 @@ namespace Lesson_2
             Console.SetCursorPosition(0, currentLineCursor);
         }
 
-        private static double Summ(double A, double B)
+        private static double Sum(double A, double B)
         {
+            double result;
             if (A > B)
             {
-                return A + B;
+                result = A + B;
             }
-            if (A == B)
+            else if (A == B)
             {
-                return A * B;
+                result = A * B;
             }
-            if (A < B)
+            else
             {
-                return A - B;
+                result = A - B;
             }
-            return 0;
+            return result;
 
         }
 
