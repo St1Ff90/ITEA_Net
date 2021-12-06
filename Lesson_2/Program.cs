@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Lesson_2
 {
@@ -12,54 +13,66 @@ namespace Lesson_2
             for (int i = 0; i < Console.WindowWidth; i++)
                 Console.Write(" ");
             Console.SetCursorPosition(0, currentLineCursor);
-             
         }
 
-        private static double Summ(double A, double B) 
+        private static double Summ(double A, double B)
         {
-            if (A > B) return A + B;
-            if (A == B) return A * B;
-            if (A < B) return A - B;
-            throw new Exception("Something went wrong!");
+            if (A > B)
+            {
+                return A + B;
+            }
+            if (A == B)
+            {
+                return A * B;
+            }
+            if (A < B)
+            {
+                return A - B;
+            }
+            return 0;
+
         }
 
-        private static string PointCoordinates(double x, double y)
+        private static int PointCoordinates(double x, double y)
         {
             switch (true)
             {
                 case true when x < 0 && y < 0:
-                    return "Left/Down";
+                    return 3;
                 case true when x < 0 && y > 0:
-                    return "Right/Down";
+                    return 2;
                 case true when x > 0 && y < 0:
-                    return "Left/Up";
-                case true when x < 0 && y > 0:
-                    return "Right/Up";
+                    return 4;
+                case true when x > 0 && y > 0:
+                    return 1;
+                case true when x == 0 || y == 0:
+                    return 0;
                 default:
                     throw new Exception("Something went wrong!");
             }
         }
 
+        private static void Swap(ref double a, ref double b)
+        {
+            double temp = a;
+            a = b;
+            b = temp;
+        }
+
+
         private static void SortThreeDigits(ref double first, ref double second, ref double third)
         {
-            double buffer;
             if (first > second)
             {
-                buffer = second;
-                second = first;
-                first = buffer;
+                Swap(ref first, ref second);
             }
             if (second > third)
             {
-                buffer = third;
-                third = second;
-                second = buffer;
+                Swap(ref second, ref third);
             }
             if (first > second)
             {
-                buffer = second;
-                second = first;
-                first = buffer;
+                Swap(ref first, ref second);
             }
         }
 
@@ -67,52 +80,148 @@ namespace Lesson_2
         {
             double x1, x2;
             double discriminant = b * b - 4 * a * c;
-            if (discriminant < 0) throw new Exception("Equation has NO roots");
+            if (discriminant < 0)
+            {
+                x1 = x2 = 0;
+            }
             else
             {
-                if (discriminant == 0) x1 = x2 = -b / (2 * a);
+                if (discriminant == 0)
+                {
+                    x1 = x2 = -b / (2 * a);
+                }
                 else
                 {
                     x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
                     x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
                 }
-                return (x1, x2);
             }
+            return (x1, x2);
         }
 
         private static string WriteNumber(int num)
         {
             string result = null;
 
-            Dictionary<int, string> dictinary = new Dictionary<int, string>
+            if (num >= 20)
             {
-                { 0, "" },
-                { 1, "one" },
-                { 2, "two" },
-                { 3, "three" },
-                { 4, "four" },
-                { 5, "five" },
-                { 6, "six" },
-                { 7, "seven" },
-                { 8, "eight" },
-                { 9, "nine" },
-                { 20, "twenty " },
-                { 30, "thirty " },
-                { 40, "forty " },
-                { 50, "fifty " },
-                { 60, "sixty " },
-                { 70, "seventy " },
-                { 80, "eighty " },
-                { 90, "ninety " }
-            };
+                if (num / 10 * 10 == 20)
+                {
+                    result += "twenty ";
+                }
+                if (num / 10 * 10 == 30)
+                {
+                    result += "thirty ";
+                }
+                if (num / 10 * 10 == 40)
+                {
+                    result += "forty ";
+                }
+                if (num / 10 * 10 == 50)
+                {
+                    result += "fifty ";
+                }
+                if (num / 10 * 10 == 60)
+                {
+                    result += "sixty ";
+                }
+                if (num / 10 * 10 == 70)
+                {
+                    result += "seventy ";
+                }
+                if (num / 10 * 10 == 80)
+                {
+                    result += "eighty ";
+                }
+                if (num / 10 * 10 == 90)
+                {
+                    result += "ninety ";
+                }
+                if (num % 10 == 0)
+                {
+                    result += "";
+                }
+                if (num % 10 == 1)
+                {
+                    result += "one";
+                }
+                if (num % 10 == 2)
+                {
+                    result += "rwo";
+                }
+                if (num % 10 == 3)
+                {
+                    result += "three";
+                }
+                if (num % 10 == 4)
+                {
+                    result += "four";
+                }
+                if (num % 10 == 5)
+                {
+                    result += "five";
+                }
+                if (num % 10 == 6)
+                {
+                    result += "six";
+                }
+                if (num % 10 == 7)
+                {
+                    result += "seven";
+                }
+                if (num % 10 == 8)
+                {
+                    result += "eight";
+                }
+                if (num % 10 == 9)
+                {
+                    result += "nine";
+                }
+            }
 
-            if (num == 10) result = "ten";
-            if (num == 11) result = "eleven";
-            if (num == 12) result = "twelve";
-            if (num == 13) result = "thirteen";
-            if (num == 15) result = "fifteen";
-            if (num - 10 >= 6 && num - 10 <= 9 || num == 14) result = dictinary[num % 10] + "teen";
-            if (num >= 20 && num <= 99) result = dictinary[num / 10 * 10] + dictinary[num % 10];
+            else if (num < 20)
+            {
+                switch (true)
+                {
+                    case true when num == 10:
+                        result = "ten";
+                        break;
+                    case true when num == 11:
+                        result = "eleven";
+                        break;
+                    case true when num == 12:
+                        result = "twelve";
+                        break;
+                    case true when num == 13:
+                        result = "thirteen";
+                        break;
+                    case true when num == 14:
+                        result = "fourteen";
+                        break;
+                    case true when num == 15:
+                        result = "fifteen";
+                        break;
+                    case true when num == 16:
+                        result = "sixteen";
+                        break;
+                    case true when num == 17:
+                        result = "seventeen";
+                        break;
+                    case true when num == 18:
+                        result = "eighteen";
+                        break;
+                    case true when num == 19:
+                        result = "nineteen";
+                        break;
+                    default:
+                        result = "Error!";
+                        break;
+                }
+            }
+            else
+            {
+                result = "Error!";
+            }
 
             return result;
         }
@@ -193,7 +302,6 @@ namespace Lesson_2
 
                 default:
                     throw new Exception("Something went wrong!");
-
             }
         }
     }
