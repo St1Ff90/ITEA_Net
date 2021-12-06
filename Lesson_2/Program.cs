@@ -136,7 +136,7 @@ namespace Lesson_2
                 switch (num % 10)
                 {
                     case 0:
-                        result += "";
+                        result += string.Empty;
                         break;
                     case 1:
                         result += "one";
@@ -170,36 +170,36 @@ namespace Lesson_2
 
             else if (num < 20)
             {
-                switch (true)
+                switch (num)
                 {
-                    case true when num == 10:
+                    case 10:
                         result = "ten";
                         break;
-                    case true when num == 11:
+                    case 11:
                         result = "eleven";
                         break;
-                    case true when num == 12:
+                    case 12:
                         result = "twelve";
                         break;
-                    case true when num == 13:
+                    case 13:
                         result = "thirteen";
                         break;
-                    case true when num == 14:
+                    case 14:
                         result = "fourteen";
                         break;
-                    case true when num == 15:
+                    case 15:
                         result = "fifteen";
                         break;
-                    case true when num == 16:
+                    case 16:
                         result = "sixteen";
                         break;
-                    case true when num == 17:
+                    case 17:
                         result = "seventeen";
                         break;
-                    case true when num == 18:
+                    case 18:
                         result = "eighteen";
                         break;
-                    case true when num == 19:
+                    case 19:
                         result = "nineteen";
                         break;
                     default:
