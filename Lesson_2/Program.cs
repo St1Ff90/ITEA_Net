@@ -30,7 +30,6 @@ namespace Lesson_2
                 return A - B;
             }
             return 0;
-
         }
 
         private static int PointCoordinates(double x, double y)
