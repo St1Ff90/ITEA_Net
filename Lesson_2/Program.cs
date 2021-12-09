@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lesson_2
 {
-    class Program
+    public class Program
     {
         private static void ClearCurrentConsoleLine()
         {
