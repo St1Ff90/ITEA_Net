@@ -20,12 +20,9 @@ namespace Lesson_3
         {
             int[] result = new int[1000 / divider];
             int pointer = 0;
-            for (int i = 1; i < 1000; i++)
+            for (int i = divider; i < 1000; i += divider)
             {
-                if (i % divider == 0)
-                {
-                    result[pointer++] = i;
-                }
+                result[pointer++] = i;
             }
 
             return result;
@@ -59,28 +56,23 @@ namespace Lesson_3
             return result;
         }
 
-        private static int SunOfDigitsDividedtoSeven_5(int start, int end)
+        private static int SumOfDigitsDividedtoSeven_5(int start, int end)
         {
             int result = 0;
 
-            if (end > start)
+            if (end < start)
             {
-                for (int i = start; i < end; i++)
-                {
-                    if (i % 7 == 0)
-                    {
-                        result += i;
-                    }
-                }
+                result = start;
+                start = end;
+                end = result;
+                result = 0;
             }
-            else
+
+            for (int i = start; i < end; i++)
             {
-                for (int i = start; i > end; i--)
+                if (i % 7 == 0)
                 {
-                    if (i % 7 == 0)
-                    {
-                        result += i;
-                    }
+                    result += i;
                 }
             }
 
@@ -99,7 +91,7 @@ namespace Lesson_3
                 previousNum = currentNum;
                 currentNum = result;
             }
-           
+
             return result;
         }
 
@@ -124,7 +116,7 @@ namespace Lesson_3
         }
 
 
-        private static double DigitSqareByBisection_8(int num) 
+        private static double DigitSqareByBisection_8(int num)
         {
             double left = 0;
             double right = num;
@@ -134,7 +126,7 @@ namespace Lesson_3
             {
                 double middle = (right - left) / 2;
                 result = left + middle;
-                if (middle * middle  * middle < num)
+                if (middle * middle * middle < num)
                 {
                     left = middle;
                 }
@@ -226,10 +218,10 @@ namespace Lesson_3
         static void Main(string[] args)
         {
             double Task1Result = RiseToThePower_1(5.2, 12);
-            int[] Task2Result = RoundDigits_2(1);
+            int[] Task2Result = RoundDigits_2(6);
             int Task3Result = TotalCountOfPositiveDigits_3(9.5);
             int Task4Result = Divider_4(96);
-            int Task5Result = SunOfDigitsDividedtoSeven_5(1, -15);
+            int Task5Result = SumOfDigitsDividedtoSeven_5(1, -15);
             int Task6Result = FibonacciLineToStep_6(10);
             int Task7Result = EuclideAlgorithm_7(1078, 462);
             double Task8Result = DigitSqareByBisection_8(27);
