@@ -56,16 +56,20 @@ namespace Lesson_3
             return result;
         }
 
+        private static void Swap(ref int a, ref int b)
+        {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+
         private static int SumOfDigitsDividedtoSeven_5(int start, int end)
         {
             int result = 0;
 
             if (end < start)
             {
-                result = start;
-                start = end;
-                end = result;
-                result = 0;
+                Swap(ref start, ref end);
             }
 
             for (int i = start; i < end; i++)
@@ -97,8 +101,6 @@ namespace Lesson_3
 
         private static int EuclideAlgorithm_7(int first, int second)
         {
-            int result = 0;
-
             while (first != 0 && second != 0)
             {
                 if (first > second)
@@ -110,9 +112,8 @@ namespace Lesson_3
                     second -= first;
                 }
             }
-            result = first + second;
 
-            return result;
+            return first + second;
         }
 
 
@@ -208,9 +209,11 @@ namespace Lesson_3
                     {
                         return true;
                     }
+
                     secondCopy /= 10;
                 }
             }
+
             return false;
         }
 
