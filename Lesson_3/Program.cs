@@ -16,16 +16,15 @@ namespace Lesson_3
             return Math.Round(result, 2);
         }
 
-        private static int[] RoundDigits_2(int devider)
+        private static int[] RoundDigits_2(int divider)
         {
-            int[] result = new int[1000];
+            int[] result = new int[1000 / divider];
             int pointer = 0;
             for (int i = 1; i < 1000; i++)
             {
-                if (i % devider == 0)
+                if (i % divider == 0)
                 {
-                    result[pointer] = i;
-                    ++pointer;
+                    result[pointer++] = i;
                 }
             }
 
@@ -35,7 +34,7 @@ namespace Lesson_3
         private static int TotalCountOfPositiveDigits_3(double maxNum)
         {
             int result = 0;
-            for (int i = 1; i <= (int)Math.Sqrt(maxNum); i++)
+            for (int i = 1; i <= (int)maxNum; i++)
             {
                 if (i * i < maxNum)
                 {
@@ -93,32 +92,14 @@ namespace Lesson_3
             int result = 0;
             int currentNum = 1;
             int previousNum = 1;
-            int i = 0;
 
-            if (count == 1 || count == 2) return 1;
-            else if (count > 2)
+            for (int i = 0; i < count - 2; i++)
             {
-                while (i < count - 2)
-                {
-                    result = currentNum + previousNum;
-                    previousNum = currentNum;
-                    currentNum = result;
-                    ++i;
-                }
+                result = currentNum + previousNum;
+                previousNum = currentNum;
+                currentNum = result;
             }
-            else
-            {
-                currentNum = -1;
-                previousNum = -1;
-                while (i > count + 2)
-                {
-                    result = previousNum + currentNum;
-                    currentNum = previousNum;
-                    previousNum = result;
-                    --i;
-                }
-            }
-
+           
             return result;
         }
 
@@ -137,37 +118,29 @@ namespace Lesson_3
                     second -= first;
                 }
             }
-
-            if (first != 0)
-            {
-                result = first;
-            }
-            else
-            {
-                result = second;
-            }
+            result = first + second;
 
             return result;
         }
 
 
-        private static double DigitSqareByBisection_8(int num) // не работает 
+        private static double DigitSqareByBisection_8(int num) 
         {
             double left = 0;
             double right = num;
             double result = 0;
 
-            while (right - left*left > 1.0)
+            while (right - left > 1.0)
             {
-                result = (right - left) / 2;
-                double middle = left + result;
-                if (result * result * result > num)
+                double middle = (right - left) / 2;
+                result = left + middle;
+                if (middle * middle  * middle < num)
                 {
-                    left = result;
+                    left = middle;
                 }
                 else
                 {
-                    right = result;
+                    right = middle;
                 }
             }
 
@@ -181,10 +154,11 @@ namespace Lesson_3
 
             do
             {
-                if (num % 10 % 2 == 0)
+                if (num % 2 == 0)
                 {
                     ++result;
                 }
+
                 num /= 10;
             } while (num != 0);
 
@@ -207,7 +181,7 @@ namespace Lesson_3
 
         private static int[] NumsWithSumOfEvenBiggerOdd_11(int num)
         {
-            int[] result = new int[num/2+1];
+            int[] result = new int[num / 2];
             int fullNumber = 0;
             int arrayPointer = 0;
 
@@ -238,7 +212,7 @@ namespace Lesson_3
                 int secondCopy = second;
                 while (secondCopy > 0)
                 {
-                    if(secondCopy % 10 == digitFromFirst)
+                    if (secondCopy % 10 == digitFromFirst)
                     {
                         return true;
                     }
@@ -252,11 +226,11 @@ namespace Lesson_3
         static void Main(string[] args)
         {
             double Task1Result = RiseToThePower_1(5.2, 12);
-            int[] Task2Result = RoundDigits_2(68);
+            int[] Task2Result = RoundDigits_2(1);
             int Task3Result = TotalCountOfPositiveDigits_3(9.5);
             int Task4Result = Divider_4(96);
             int Task5Result = SunOfDigitsDividedtoSeven_5(1, -15);
-            int Task6Result = FibonacciLineToStep_6(-10);
+            int Task6Result = FibonacciLineToStep_6(10);
             int Task7Result = EuclideAlgorithm_7(1078, 462);
             double Task8Result = DigitSqareByBisection_8(27);
             int Task9Result = CountOddNumbers_9(87456156);
