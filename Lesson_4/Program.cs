@@ -172,7 +172,7 @@ namespace Lesson_4
             int arrayPlace = 0;
             while (arrayPlace < arraySize && str.Length > 0)
             {
-                if(str.Contains(" "))
+                if (str.Contains(" "))
                 {
                     string cutted = str.Substring(0, str.IndexOf(' '));
                     str = str.Substring(cutted.Length + 1);
@@ -181,16 +181,15 @@ namespace Lesson_4
                         result[arrayPlace++] = cutted;
                     }
                 }
-                else if(str.Length > 0)
+                else
                 {
                     if (str.Contains(toFind))
                     {
                         result[arrayPlace] = str;
                         str = str.Substring(str.Length);
                     }
+                    break;
                 }
-
-                str = str.Substring(str.Length);
             }
 
             return result;
@@ -218,7 +217,7 @@ namespace Lesson_4
             ReverseNums_8(ref array);
             SelectionSortIncrease_9(ref array);
             InsertSortDecrease_10(ref array);
-            string[] search = MatchesToStringSearch("Hello bad!", "e");
+            string[] search = MatchesToStringSearch("Hello bad eddd!", "e");
 
         }
     }
