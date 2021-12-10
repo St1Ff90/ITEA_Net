@@ -7,7 +7,7 @@ namespace Lesson_4
 
         private static int MinNumInArray_1(int[] arr)
         {
-            int result = int.MaxValue;
+            int result = arr[0];
 
             for (int i = 0; i < arr.Length; i++)
             {
@@ -22,7 +22,7 @@ namespace Lesson_4
 
         private static int MaxNumInArray_2(int[] arr)
         {
-            int result = int.MinValue;
+            int result = arr[0];
 
             for (int i = 0; i < arr.Length; i++)
             {
@@ -37,14 +37,12 @@ namespace Lesson_4
 
         private static int MinIndexInArray_3(int[] arr)
         {
-            int currentValue = int.MaxValue;
-            int result = -1;
+            int result = 0;
 
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] < currentValue)
+                if (arr[i] < arr[result])
                 {
-                    currentValue = arr[i];
                     result = i;
                 }
             }
@@ -54,14 +52,12 @@ namespace Lesson_4
 
         private static int MaxIndexInArray_4(int[] arr)
         {
-            int currentValue = int.MinValue;
-            int result = -1;
+            int result = 0;
 
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] > currentValue)
+                if (arr[i] > arr[result])
                 {
-                    currentValue = arr[i];
                     result = i;
                 }
             }
@@ -81,13 +77,14 @@ namespace Lesson_4
             return result;
         }
 
+
+
+
         private static void ReverseArray_6(ref int[] arr)
         {
             for (int i = 0; i < arr.Length / 2; i++)
             {
-                int temp = arr[i];
-                arr[i] = arr[arr.Length - i - 1];
-                arr[arr.Length - i - 1] = temp;
+                Swap(arr, i, arr.Length - i - 1);
             }
         }
 
@@ -97,7 +94,7 @@ namespace Lesson_4
 
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] % 2 != 0)
+                if (arr[i] % 2 == 1)
                 {
                     result++;
                 }
@@ -117,9 +114,7 @@ namespace Lesson_4
 
             for (int i = 0; i < arr.Length / 2; i++)
             {
-                int temp = arr[i];
-                arr[i] = arr[arr.Length / 2 + i + integerPlus];
-                arr[arr.Length / 2 + i + integerPlus] = temp;
+                Swap(arr, i, arr.Length / 2 + i + integerPlus);
             }
         }
 
@@ -129,14 +124,15 @@ namespace Lesson_4
             for (int i = 0; i < arr.Length - 1; i++)
             {
                 int min = i;
-                int j = i + 1;
-                for (; j < arr.Length; j++)
+
+                for (int j = i + 1; j < arr.Length; j++)
                 {
                     if (arr[j] < arr[min])
                     {
                         min = j;
                     }
                 }
+
                 int temp = arr[i];
                 arr[i] = arr[min];
                 arr[min] = temp;
@@ -164,6 +160,7 @@ namespace Lesson_4
                     Swap(arr, j, j - 1);
                     j -= 1;
                 }
+
                 arr[j] = x;
             }
         }
@@ -191,8 +188,7 @@ namespace Lesson_4
                     str = str.Substring(cutted.Length + 1);
                     if (cutted.Contains(toFind))
                     {
-                        result[arrayPlace] = cutted;
-                        arrayPlace++;
+                        result[arrayPlace++] = cutted;
                     }
                 }
                 else if(str.Length > 0)
