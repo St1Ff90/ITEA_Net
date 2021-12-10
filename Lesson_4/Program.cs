@@ -77,9 +77,6 @@ namespace Lesson_4
             return result;
         }
 
-
-
-
         private static void ReverseArray_6(ref int[] arr)
         {
             for (int i = 0; i < arr.Length / 2; i++)
@@ -105,12 +102,7 @@ namespace Lesson_4
 
         private static void ReverseNums_8(ref int[] arr)
         {
-            int integerPlus = 1;
-
-            if (arr.Length % 2 == 0)
-            {
-                integerPlus = 0;
-            }
+            int integerPlus = arr.Length % 2;
 
             for (int i = 0; i < arr.Length / 2; i++)
             {
@@ -133,9 +125,7 @@ namespace Lesson_4
                     }
                 }
 
-                int temp = arr[i];
-                arr[i] = arr[min];
-                arr[min] = temp;
+                Swap(arr, i, min);
             }
         }
 
@@ -180,7 +170,7 @@ namespace Lesson_4
             string[] result = new string[arraySize];
 
             int arrayPlace = 0;
-            while (arrayPlace < arraySize)
+            while (arrayPlace < arraySize && str.Length > 0)
             {
                 if(str.Contains(" "))
                 {
@@ -199,10 +189,8 @@ namespace Lesson_4
                         str = str.Substring(str.Length);
                     }
                 }
-                else
-                {
-                    break;
-                }
+
+                str = str.Substring(str.Length);
             }
 
             return result;
@@ -230,7 +218,7 @@ namespace Lesson_4
             ReverseNums_8(ref array);
             SelectionSortIncrease_9(ref array);
             InsertSortDecrease_10(ref array);
-            string[] search = MatchesToStringSearch("You are my dear friend", "e");
+            string[] search = MatchesToStringSearch("Hello bad!", "e");
 
         }
     }
