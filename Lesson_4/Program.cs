@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Lesson_4
 {
@@ -157,13 +158,28 @@ namespace Lesson_4
 
         private static string[] MatchesToStringSearch(string str, string toFind)
         {
-            int arraySize = 1;
+            int arraySize = 0;
+            int startPossition = 0;
 
-            for (int i = 0; i < str.Length; i++)
+            while (true)
             {
-                if (str[i] == ' ')
+                if (str.IndexOf(" ", startPossition) != -1)
                 {
-                    arraySize++;
+                    string cutted = str.Substring(startPossition, str.IndexOf(" ", startPossition)-startPossition);
+                    startPossition += cutted.Length+1;
+                    if(cutted.Contains(toFind))
+                    {
+                        arraySize++;
+                    }
+                }
+                else
+                {
+                    string cutted = str.Substring(startPossition);
+                    if (cutted.Contains(toFind))
+                    {
+                        arraySize++;
+                    }
+                    break;
                 }
             }
 
@@ -186,7 +202,6 @@ namespace Lesson_4
                     if (str.Contains(toFind))
                     {
                         result[arrayPlace] = str;
-                        str = str.Substring(str.Length);
                     }
                     break;
                 }
@@ -217,7 +232,7 @@ namespace Lesson_4
             ReverseNums_8(ref array);
             SelectionSortIncrease_9(ref array);
             InsertSortDecrease_10(ref array);
-            string[] search = MatchesToStringSearch("Hello bad eddd!", "e");
+            string[] search = MatchesToStringSearch("Hello a eddd! red ffr ", "e");
 
         }
     }
