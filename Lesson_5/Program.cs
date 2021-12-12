@@ -40,18 +40,18 @@ namespace Lesson_5
             return result;
         }
 
-        private static int[] FindMinIndex_3(int[,] arr)
+        private static (int i, int j) FindMinIndex_3(int[,] arr)
         {
-            int[] result = new int[2] { 0, 0 };
+            (int i, int j) result = (0, 0);
 
             for (int i = 0; i < arr.GetLength(0); i++)
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    if (arr[result[0], result[1]] > arr[i, j])
+                    if (arr[result.i, result.j] > arr[i, j])
                     {
-                        result[0] = i;
-                        result[1] = j;
+                        result.i = i;
+                        result.j = j;
                     }
                 }
             }
@@ -86,49 +86,24 @@ namespace Lesson_5
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    int up = -1;
-                    int right = -1;
-                    int down = -1;
-                    int left = -1;
-
-                    if (i == 0)
+                    if (i > 0 && arr[i, j] < arr[i - 1, j])
                     {
-                        up = 0;
+                        continue;
                     }
-                    if(j == arr.GetLength(1) - 1)
+                    if (i < arr.GetLength(0) && arr[i, j] < arr[i + 1, j])
                     {
-                        right = 0;
+                        continue;
                     }
-                    if (j == 0)
+                    if (j > 0 && arr[i, j] < arr[i, j - 1])
                     {
-                        left = 0;
+                        continue;
                     }
-                    if (i == arr.GetLength(0) - 1)
+                    if (j < arr.GetLength(1) && arr[i, j] < arr[i, j + 1])
                     {
-                        down = 0;
+                        continue;
                     }
 
-                    if(up == -1)
-                    {
-                        up = arr[i - 1, j];
-                    }
-                    if(right == -1)
-                    {
-                        right = arr[i, j + 1];
-                    }
-                    if (down == -1)
-                    {
-                        down = arr[i + 1, j];
-                    }
-                    if (left == -1)
-                    {
-                        left = arr[i, j - 1];
-                    }
-
-                    if(arr[i, j] > (up + right + down + left))
-                    {
-                        result++;
-                    }
+                    result++;
                 }
             }
 
@@ -137,9 +112,9 @@ namespace Lesson_5
 
         private static void Swap(int[,] array, int i, int j)
         {
-            int temp = array[i,j];
-            array[i,j] = array[j,i];
-            array[j,i] = temp;
+            int temp = array[i, j];
+            array[i, j] = array[j, i];
+            array[j, i] = temp;
         }
 
         private static void MirrorArray_6(ref int[,] arr)
@@ -158,7 +133,7 @@ namespace Lesson_5
 
 
 
-            static void Main(string[] args)
+        static void Main(string[] args)
         {
             int[,] array = new int[5, 5];
             Random random = new Random();
@@ -175,7 +150,7 @@ namespace Lesson_5
 
             int Task1 = FindMinElement_1(array);
             int Task2 = FindMaxElement_2(array);
-            int[] Task3 = FindMinIndex_3(array);
+            (int i, int j) Task3 = FindMinIndex_3(array);
             int[] Task4 = FindMaxIndex_4(array);
             int Task5 = CompaneNeighbors_5(array);
             MirrorArray_6(ref array);
