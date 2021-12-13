@@ -183,7 +183,7 @@ namespace Lesson_3
                 fullNumber = fullNumber * 10 + i;
             }
 
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < num / 2; i++)
             {
                 if (fullNumber % 10 % 2 == 0)
                 {
