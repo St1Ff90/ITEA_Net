@@ -6,17 +6,13 @@ namespace Additional_HW_Lesson_1
     {
         static void Main(string[] args)
         {
-            double a = 10;
-            int i = 1;
-            double n = 0;
-            do
-            {
-                n = 1 / i;
-                i++;
+            /*
+            BigDecimal bd1 = new BigDecimal();
+            BigDecimal bd2 = new BigDecimal();
 
-            } while (n > a);
-
-
+            bd1 = 11545454;
+            Console.WriteLine((bd1 * bd2).ToString());
+            */
         }
     }
 }
