@@ -90,7 +90,7 @@ namespace Lesson_5
                     {
                         continue;
                     }
-                    if (i < arr.GetLength(0) && arr[i, j] < arr[i + 1, j])
+                    if (i < arr.GetLength(0) - 1 && arr[i, j] < arr[i + 1, j])
                     {
                         continue;
                     }
@@ -98,7 +98,7 @@ namespace Lesson_5
                     {
                         continue;
                     }
-                    if (j < arr.GetLength(1) && arr[i, j] < arr[i, j + 1])
+                    if (j < arr.GetLength(1) - 1 && arr[i, j] < arr[i, j + 1])
                     {
                         continue;
                     }

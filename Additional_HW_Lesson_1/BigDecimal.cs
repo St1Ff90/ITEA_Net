@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Additional_HW_Lesson_1
 {
+    /*
     public struct BigDecimal : IComparable
     {
         public string Integer { get; set; }
@@ -19,18 +20,14 @@ namespace Additional_HW_Lesson_1
         public int CompareTo(object obj)
         {
 
-            int sum = 0;
-            for (int i = 1; i <= 50; i++)
-            {
-                sum = (int)Math.Pow(i, (1/i));
-            }
-
-
-            throw new NotImplementedException();
+            
 
         }
 
 
     }
+    */
+
+  
 }
 
