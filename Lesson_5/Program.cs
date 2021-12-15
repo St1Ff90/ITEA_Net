@@ -6,38 +6,12 @@ namespace Lesson_5
     {
         private static int FindMinElement_1(int[,] arr)
         {
-            int result = arr[0, 0];
-
-            for (int i = 0; i < arr.GetLength(0); i++)
-            {
-                for (int j = 0; j < arr.GetLength(1); j++)
-                {
-                    if (result > arr[i, j])
-                    {
-                        result = arr[i, j];
-                    }
-                }
-            }
-
-            return result;
+            return arr[FindMinIndex_3(arr).i, FindMinIndex_3(arr).j]; ;
         }
 
         private static int FindMaxElement_2(int[,] arr)
         {
-            int result = arr[0, 0];
-
-            for (int i = 0; i < arr.GetLength(0); i++)
-            {
-                for (int j = 0; j < arr.GetLength(1); j++)
-                {
-                    if (result < arr[i, j])
-                    {
-                        result = arr[i, j];
-                    }
-                }
-            }
-
-            return result;
+            return arr[FindMaxIndex_4(arr).i, FindMaxIndex_4(arr).j];
         }
 
         private static (int i, int j) FindMinIndex_3(int[,] arr)
@@ -59,18 +33,18 @@ namespace Lesson_5
             return result;
         }
 
-        private static int[] FindMaxIndex_4(int[,] arr)
+        private static (int i, int j) FindMaxIndex_4(int[,] arr)
         {
-            int[] result = new int[2] { 0, 0 };
+            (int i, int j) result = (0, 0);
 
             for (int i = 0; i < arr.GetLength(0); i++)
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    if (arr[result[0], result[1]] < arr[i, j])
+                    if (arr[result.i, result.j] < arr[i, j])
                     {
-                        result[0] = i;
-                        result[1] = j;
+                        result.i = i;
+                        result.j = j;
                     }
                 }
             }
@@ -131,8 +105,6 @@ namespace Lesson_5
             }
         }
 
-
-
         static void Main(string[] args)
         {
             int[,] array = new int[5, 5];
@@ -151,7 +123,7 @@ namespace Lesson_5
             int Task1 = FindMinElement_1(array);
             int Task2 = FindMaxElement_2(array);
             (int i, int j) Task3 = FindMinIndex_3(array);
-            int[] Task4 = FindMaxIndex_4(array);
+            (int i, int j) Task43 = FindMaxIndex_4(array);
             int Task5 = CompaneNeighbors_5(array);
             MirrorArray_6(ref array);
             Console.WriteLine();
