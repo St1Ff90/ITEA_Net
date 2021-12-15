@@ -89,7 +89,7 @@ namespace Additioonal_HW_Lesson_5
         #endregion
 
         #region Task2
-        private static int[,] FillArray(int size)
+        private static int[,] FillArrayBySpiral_Method_1(int size)
         {
             int[,] arr = new int[size, size];
             int integer = 0;
@@ -151,6 +151,37 @@ namespace Additioonal_HW_Lesson_5
 
             return arr;
         }
+        
+        private static int[,] FillArrayBySpiral_Method_2(int size)
+        {
+            int[,] arr = new int[size, size];
+            int currentСircle;
+            int i;
+            int integer = 0;
+
+            for (currentСircle = 1; currentСircle <= size / 2 + size % 2; currentСircle++)
+            {
+                for (i = currentСircle - 1; i < size - currentСircle + 1; i++)
+                {
+                    arr[currentСircle - 1, i] = integer++;
+                }
+                for (i = currentСircle; i < size - currentСircle + 1; i++)
+                {
+                    arr[i, size - currentСircle] = integer++;
+                }
+                for (i = size - currentСircle - 1; i >= currentСircle - 1; i--)
+                {
+                    arr[size - currentСircle, i] = integer++;
+                }
+
+                for (i = size - currentСircle - 1; i >= currentСircle; i--)
+                {
+                    arr[i, currentСircle - 1] = integer++;
+                }
+            }
+
+            return arr;
+        }
         #endregion
 
         static void Main()
@@ -161,7 +192,7 @@ namespace Additioonal_HW_Lesson_5
                 + " Maximim distance = " + Math.Round(FindDistanceesFromPlanPoints(points).maxDistance, 2));
             Console.WriteLine();
 
-            int[,] arr = FillArray(9);
+            int[,] arr = FillArrayBySpiral_Method_2(5);
 
             for (int i = 0; i < arr.GetLength(0); i++)
             {
