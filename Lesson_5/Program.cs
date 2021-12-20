@@ -6,16 +6,40 @@ namespace Lesson_5
     {
         private static int FindMinElement_1(int[,] arr)
         {
+            if(arr == null)
+            {
+                throw new ArgumentNullException("Array in null");
+            }
+            if(arr.Length < 1)
+            {
+                throw new ArgumentException("Array in empty");
+            }
             return arr[FindMinIndex_3(arr).i, FindMinIndex_3(arr).j]; ;
         }
 
         private static int FindMaxElement_2(int[,] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array in null");
+            }
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Array in empty");
+            }
             return arr[FindMaxIndex_4(arr).i, FindMaxIndex_4(arr).j];
         }
 
         private static (int i, int j) FindMinIndex_3(int[,] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array in null");
+            }
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Array in empty");
+            }
             (int i, int j) result = (0, 0);
 
             for (int i = 0; i < arr.GetLength(0); i++)
@@ -35,6 +59,14 @@ namespace Lesson_5
 
         private static (int i, int j) FindMaxIndex_4(int[,] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array in null");
+            }
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Array in empty");
+            }
             (int i, int j) result = (0, 0);
 
             for (int i = 0; i < arr.GetLength(0); i++)
@@ -54,6 +86,14 @@ namespace Lesson_5
 
         private static int CompaneNeighbors_5(int[,] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array in null");
+            }
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Array in empty");
+            }
             int result = 0;
 
             for (int i = 0; i < arr.GetLength(0); i++)
@@ -93,6 +133,14 @@ namespace Lesson_5
 
         private static void MirrorArray_6(ref int[,] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array in null");
+            }
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Array in empty");
+            }
             for (int i = 0; i < arr.GetLength(0); i++)
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
@@ -104,38 +152,56 @@ namespace Lesson_5
                 }
             }
         }
-
+        
         static void Main(string[] args)
         {
-            int[,] array = new int[5, 5];
-            Random random = new Random();
-
-            for (int i = 0; i < array.GetLength(0); i++)
+            try
             {
-                for (int j = 0; j < array.GetLength(1); j++)
+                int[,] array = new int[5, 5];
+                Random random = new Random();
+
+                for (int i = 0; i < array.GetLength(0); i++)
                 {
-                    array[i, j] = random.Next(-10, 100);
-                    Console.Write(array[i, j] + " ");
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        array[i, j] = random.Next(-10, 100);
+                        Console.Write(array[i, j] + " ");
+                    }
+                    Console.WriteLine();
                 }
+
+                int Task1 = FindMinElement_1(array);
+                int Task2 = FindMaxElement_2(array);
+                (int i, int j) Task3 = FindMinIndex_3(array);
+                (int i, int j) Task43 = FindMaxIndex_4(array);
+                int Task5 = CompaneNeighbors_5(array);
+                MirrorArray_6(ref array);
                 Console.WriteLine();
+
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        Console.Write(array[i, j] + " ");
+                    }
+                    Console.WriteLine();
+                }
             }
-
-            int Task1 = FindMinElement_1(array);
-            int Task2 = FindMaxElement_2(array);
-            (int i, int j) Task3 = FindMinIndex_3(array);
-            (int i, int j) Task43 = FindMaxIndex_4(array);
-            int Task5 = CompaneNeighbors_5(array);
-            MirrorArray_6(ref array);
-            Console.WriteLine();
-
-            for (int i = 0; i < array.GetLength(0); i++)
+            catch (ArgumentNullException ex)
             {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    Console.Write(array[i, j] + " ");
-                }
-                Console.WriteLine();
+                Console.WriteLine(ex.Message);
+                return;
             }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            } 
         }
     }
 }

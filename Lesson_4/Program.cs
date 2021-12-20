@@ -8,36 +8,32 @@ namespace Lesson_4
 
         private static int MinNumInArray_1(int[] arr)
         {
-            int result = arr[0];
-
-            for (int i = 0; i < arr.Length; i++)
+            if (arr == null)
             {
-                if (arr[i] < result)
-                {
-                    result = arr[i];
-                }
+                throw new ArgumentNullException("Array is empty");
             }
 
-            return result;
+            return arr[MinIndexInArray_3(arr)];
         }
 
         private static int MaxNumInArray_2(int[] arr)
         {
-            int result = arr[0];
-
-            for (int i = 0; i < arr.Length; i++)
+            if (arr == null)
             {
-                if (arr[i] > result)
-                {
-                    result = arr[i];
-                }
+                throw new ArgumentNullException("Array is empty");
             }
 
-            return result;
+            return arr[MaxIndexInArray_4(arr)];
+
         }
 
         private static int MinIndexInArray_3(int[] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array is empty");
+            }
+
             int result = 0;
 
             for (int i = 0; i < arr.Length; i++)
@@ -53,6 +49,11 @@ namespace Lesson_4
 
         private static int MaxIndexInArray_4(int[] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array is empty");
+            }
+
             int result = 0;
 
             for (int i = 0; i < arr.Length; i++)
@@ -68,6 +69,11 @@ namespace Lesson_4
 
         private static int SummOfOddItemsInArray_5(int[] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array is empty");
+            }
+
             int result = 0;
 
             for (int i = 1; i < arr.Length; i += 2)
@@ -80,6 +86,16 @@ namespace Lesson_4
 
         private static void ReverseArray_6(ref int[] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array is empty");
+            }
+
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Nothing to reverse");
+            }
+
             for (int i = 0; i < arr.Length / 2; i++)
             {
                 Swap(arr, i, arr.Length - i - 1);
@@ -88,6 +104,16 @@ namespace Lesson_4
 
         private static int OddEleemeentsCount_7(int[] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array is empty");
+            }
+
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Nothing to count");
+            }
+
             int result = 0;
 
             for (int i = 0; i < arr.Length; i++)
@@ -103,6 +129,16 @@ namespace Lesson_4
 
         private static void ReverseNums_8(ref int[] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array is empty");
+            }
+
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Nothing to reverse");
+            }
+
             int integerPlus = arr.Length % 2;
 
             for (int i = 0; i < arr.Length / 2; i++)
@@ -114,6 +150,16 @@ namespace Lesson_4
 
         private static void SelectionSortIncrease_9(ref int[] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array is empty");
+            }
+
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Nothing to sort");
+            }
+
             for (int i = 0; i < arr.Length - 1; i++)
             {
                 int min = i;
@@ -139,6 +185,16 @@ namespace Lesson_4
 
         private static void InsertSortDecrease_10(ref int[] arr)
         {
+            if (arr == null)
+            {
+                throw new ArgumentNullException("Array is empty");
+            }
+
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Nothing to sort");
+            }
+
             int x;
             int j;
 
@@ -158,6 +214,11 @@ namespace Lesson_4
 
         private static string[] MatchesToStringSearch(string str, string toFind)
         {
+            if(string.IsNullOrEmpty(str) || string.IsNullOrEmpty(toFind))
+            {
+                throw new ArgumentException("Shouldn't be empty");
+            }
+
             int arraySize = 0;
             int startPossition = 0;
 
@@ -212,28 +273,47 @@ namespace Lesson_4
 
         static void Main()
         {
-
-            int[] array = new int[5];
-            Random random = new Random();
-
-            for (int i = 0; i < array.Length; i++)
+            try
             {
-                array[i] = random.Next(-10, 100);
-                Console.Write(array[i] + " ");
+                int[] array = new int[5];
+                Random random = new Random();
+
+                for (int i = 0; i < array.Length; i++)
+                {
+                    array[i] = random.Next(-10, 100);
+                    Console.Write(array[i] + " ");
+                }
+
+                int Task1 = MinNumInArray_1(array);
+                int Tasl2 = MaxNumInArray_2(array);
+                int Tasl3 = MinIndexInArray_3(array);
+                int Tasl4 = MaxIndexInArray_4(array);
+                int Tasl5 = SummOfOddItemsInArray_5(array);
+                ReverseArray_6(ref array);
+                int Tasl7 = OddEleemeentsCount_7(array);
+                ReverseNums_8(ref array);
+                SelectionSortIncrease_9(ref array);
+                InsertSortDecrease_10(ref array);
+                string[] search = MatchesToStringSearch("Hello a eddd! red ffr ", "e");
+
             }
-
-            int Task1 = MinNumInArray_1(array);
-            int Tasl2 = MaxNumInArray_2(array);
-            int Tasl3 = MinIndexInArray_3(array);
-            int Tasl4 = MaxIndexInArray_4(array);
-            int Tasl5 = SummOfOddItemsInArray_5(array);
-            ReverseArray_6(ref array);
-            int Tasl7 = OddEleemeentsCount_7(array);
-            ReverseNums_8(ref array);
-            SelectionSortIncrease_9(ref array);
-            InsertSortDecrease_10(ref array);
-            string[] search = MatchesToStringSearch("Hello a eddd! red ffr ", "e");
-
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+            
         }
     }
 }

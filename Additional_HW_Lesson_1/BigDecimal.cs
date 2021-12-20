@@ -9,8 +9,8 @@ namespace Additional_HW_Lesson_1
 
     public struct BigDecimal : IComparable
     {
-        public string Integer { get; set; }
-        public string Remainder { get; set; }
+        private string Integer { get; set; }
+        private string Remainder { get; set; }
 
         public BigDecimal(string _integer, string _remainder) : this()
         {
